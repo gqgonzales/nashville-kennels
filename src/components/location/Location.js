@@ -3,7 +3,7 @@ import "./Location.css";
 
 export const Location = () => (
   <section className="location">
-    <h3 className="location__name">NK West</h3>
-    <div className="location__address">8210 Boling St</div>
+    <h3 className="location__name">Nashville North</h3>
+    <div className="location__address">8422 Johnson Pike</div>
   </section>
 );
