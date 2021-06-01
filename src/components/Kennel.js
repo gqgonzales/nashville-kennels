@@ -2,10 +2,12 @@ import React from "react";
 // import { Animal } from "./animal/Animal.js";
 import { Employee } from "./employee/Employee";
 import { Location } from "./location/Location";
-import { Customer } from "./customer/Customer";
+// import { Customer } from "./customer/Customer";
 import "./Kennel.css";
 import { AnimalList } from "./animal/AnimalList";
 import { AnimalProvider } from "./animal/AnimalProvider";
+import { CustomerProvider } from "./customer/CustomerProvider";
+import { CustomerList } from "./customer/CustomerList";
 
 export const Kennel = () => (
   <>
@@ -37,10 +39,9 @@ export const Kennel = () => (
     </article>
     <h2>Customers</h2>
     <article className="customers">
-      <Customer />
-      <Customer />
-      <Customer />
-      <Customer />
+      <CustomerProvider>
+        <CustomerList />
+      </CustomerProvider>
     </article>
   </>
 );
