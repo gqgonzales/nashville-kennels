@@ -33,7 +33,7 @@ export const AnimalForm = () => {
   */
   useEffect(() => {
     getCustomers().then(getLocations);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //when a field changes, update state. The return will re-render and display based on the values in state
   //Controlled component
