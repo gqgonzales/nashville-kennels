@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { AnimalForm } from "./animal/AnimalForm";
 import { AnimalList } from "./animal/AnimalList";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { CustomerList } from "./customer/CustomerList";
@@ -24,8 +25,11 @@ export const ApplicationViews = () => {
         <Route path="/animals">
           <AnimalList />
         </Route>
+
+        <Route exact path="/animals/create">
+          <AnimalForm />
+        </Route>
       </AnimalProvider>
-      {/* Employee, Location, Customer in that order */}
 
       <EmployeeProvider>
         <Route path="/employees">

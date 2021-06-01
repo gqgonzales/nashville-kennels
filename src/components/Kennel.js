@@ -1,9 +1,7 @@
-import React from "react";
 // import { Animal } from "./animal/Animal.js";
 // import { Employee } from "./employee/Employee";
 // import { Location } from "./location/Location";
 // import { Customer } from "./customer/Customer";
-import "./Kennel.css";
 /* import { AnimalList } from "./animal/AnimalList";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { CustomerProvider } from "./customer/CustomerProvider";
@@ -12,12 +10,13 @@ import { EmployeeList } from "./employee/EmployeeList";
 import { EmployeeProvider } from "./employee/EmployeeProvider";
 import { LocationList } from "./location/LocationList";
 import { LocationProvider } from "./location/LocationProvider"; */
+import React from "react";
+import "./Kennel.css";
 import { NavBar } from "./nav/NavBar";
 import { ApplicationViews } from "./ApplicationViews";
 
 export const Kennel = () => (
   <>
-    
     <h1>Nashville Kennels</h1>
     <h2>Loving care when you're not there.</h2>
     <NavBar />
