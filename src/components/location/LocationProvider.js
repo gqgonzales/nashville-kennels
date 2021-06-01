@@ -5,14 +5,12 @@ export const LocationContext = createContext();
 
 // This component establishes what data can be used.
 export const LocationProvider = (props) => {
-  const [locations, setlocations] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   const getLocations = () => {
-    return fetch(
-      "http://localhost:8088/locations?_expand=location&_expand=customer"
-    )
+    return fetch("http://localhost:8088/locations")
       .then((res) => res.json())
-      .then((data) => setlocations(data));
+      .then((data) => setLocations(data));
   };
 
   const addLocation = (locationObject) => {
@@ -27,8 +25,8 @@ export const LocationProvider = (props) => {
 
   /*
         You return a context provider which has the
-        `locations` state, `getlocations` function,
-        and the `addAnimal` function as keys. This
+        `locations` state, `getLocations` function,
+        and the `addLocation` function as keys. This
         allows any child elements to access them.
     */
   return (

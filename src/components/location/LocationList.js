@@ -4,13 +4,13 @@ import { LocationContext } from "./LocationProvider";
 import "./Location.css";
 
 export const LocationList = () => {
-  // This state changes when `getlocations()` is invoked below
+  // This state changes when `getLocations()` is invoked below
   const { locations, getLocations } =
     useContext(LocationContext);
 
   //useEffect - reach out to the world for something
   useEffect(() => {
-    console.log("locationList: useEffect - getlocations");
+    console.log("locationList: useEffect - getLocations");
     getLocations();
   }, []);
   //   The empty array bracket is the dependency array. It only runs on first render.

@@ -1,7 +1,7 @@
 import React from "react";
 // import { Animal } from "./animal/Animal.js";
 // import { Employee } from "./employee/Employee";
-import { Location } from "./location/Location";
+// import { Location } from "./location/Location";
 // import { Customer } from "./customer/Customer";
 import "./Kennel.css";
 import { AnimalList } from "./animal/AnimalList";
@@ -15,8 +15,8 @@ import { LocationProvider } from "./location/LocationProvider";
 
 export const Kennel = () => (
   <>
-    <h2>Nashville Kennels</h2>
-    <small>Loving care when you're not there.</small>
+    <h1>Nashville Kennels</h1>
+    <h2>Loving care when you're not there.</h2>
     <address>
       <div>Visit Us at the Nashville North Location</div>
       <div>500 Puppy Way</div>
