@@ -23,7 +23,7 @@ export const CustomerList = () => {
             <div className="customer__name">
               Name: {customer.name}
             </div>
-            <div className="animal__breed">
+            <div className="customer__address">
               Address: {customer.address}
             </div>
           </div>
