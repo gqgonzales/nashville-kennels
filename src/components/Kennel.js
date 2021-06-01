@@ -1,9 +1,11 @@
 import React from "react";
-import { Animal } from "./animal/Animal.js";
-import { Employee } from "./employee/Employee.js";
-import { Location } from "./location/Location.js";
-import { Customer } from "./customer/Customer.js";
+// import { Animal } from "./animal/Animal.js";
+import { Employee } from "./employee/Employee";
+import { Location } from "./location/Location";
+import { Customer } from "./customer/Customer";
 import "./Kennel.css";
+import { AnimalList } from "./animal/AnimalList";
+import { AnimalProvider } from "./animal/AnimalProvider";
 
 export const Kennel = () => (
   <>
@@ -14,10 +16,13 @@ export const Kennel = () => (
       <div>500 Puppy Way</div>
     </address>
     <h2>Animals</h2>
+    {/*  It is crucial that you wrap components that need data with the provider component that exposes that data in JSX.
+    You can wrap a component in as many providers as needed.
+    */}
     <article className="animals">
-      <Animal />
-      <Animal />
-      <Animal />
+      <AnimalProvider>
+        <AnimalList />
+      </AnimalProvider>
     </article>
     <h2>Employees</h2>
     <article className="employees">

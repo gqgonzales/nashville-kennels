@@ -12,7 +12,7 @@ export const AnimalProvider = (props) => {
       "http://localhost:8088/animals?_expand=location"
     )
       .then((res) => res.json())
-      .then(setAnimals);
+      .then((data) => setAnimals(data));
   };
 
   const addAnimal = (animalObj) => {
