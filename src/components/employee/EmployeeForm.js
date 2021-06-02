@@ -66,7 +66,7 @@ export const EmployeeForm = () => {
 
   return (
     <form className="employeeForm">
-      <h2 className="employeeForm__title">New Animal</h2>
+      <h2 className="employeeForm__title">Hire someone new</h2>
       <fieldset>
         <div className="form-group">
           <label htmlFor="name">Employee name:</label>

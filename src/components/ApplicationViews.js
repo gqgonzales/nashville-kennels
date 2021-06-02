@@ -21,10 +21,6 @@ export const ApplicationViews = () => {
           <Route exact path="/">
             <LocationList />
           </Route>
-
-          <Route exact path="/locations/create">
-            <LocationForm />
-          </Route>
         </EmployeeProvider>
       </LocationProvider>
 
@@ -58,9 +54,15 @@ export const ApplicationViews = () => {
       </EmployeeProvider>
 
       <LocationProvider>
-        <Route path="/locations">
-          <LocationList />
-        </Route>
+        <EmployeeProvider>
+          <Route path="/locations">
+            <LocationList />
+          </Route>
+
+          <Route exact path="/locations/create">
+            <LocationForm />
+          </Route>
+        </EmployeeProvider>
       </LocationProvider>
 
       <CustomerProvider>
