@@ -5,6 +5,7 @@ import { AnimalList } from "./animal/AnimalList";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { CustomerList } from "./customer/CustomerList";
 import { CustomerProvider } from "./customer/CustomerProvider";
+import { EmployeeForm } from "./employee/EmployeeForm";
 import { EmployeeList } from "./employee/EmployeeList";
 import { EmployeeProvider } from "./employee/EmployeeProvider";
 import { LocationList } from "./location/LocationList";
@@ -36,9 +37,17 @@ export const ApplicationViews = () => {
       </AnimalProvider>
 
       <EmployeeProvider>
-        <Route path="/employees">
-          <EmployeeList />
-        </Route>
+        <LocationProvider>
+          <AnimalProvider>
+            <Route path="/employees">
+              <EmployeeList />
+            </Route>
+            <Route exact path="/employees/create">
+              {/* Need to import EmployeeForm at top */}
+              <EmployeeForm />
+            </Route>
+          </AnimalProvider>
+        </LocationProvider>
       </EmployeeProvider>
 
       <LocationProvider>
