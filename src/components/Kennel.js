@@ -11,23 +11,49 @@ import { EmployeeProvider } from "./employee/EmployeeProvider";
 import { LocationList } from "./location/LocationList";
 import { LocationProvider } from "./location/LocationProvider"; */
 import React from "react";
-import "./Kennel.css";
-import { NavBar } from "./nav/NavBar";
+import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
+import { NavBar } from "./nav/NavBar";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
+import "./Kennel.css";
 
 export const Kennel = () => (
+  <>
+    <Route
+      render={() => {
+        if (localStorage.getItem("kennel_customer")) {
+          return (
+            <>
+              <h1>Nashville Kennels</h1>
+              <h2>Loving care when you're not there.</h2>
+              <NavBar />
+              <ApplicationViews />
+            </>
+          );
+        } else {
+          return <Redirect to="/login" />;
+        }
+      }}
+    />
+
+    <Route path="/login">
+      <Login />
+    </Route>
+    <Route path="/register">
+      <Register />
+    </Route>
+  </>
+);
+
+/* export const Kennel = () => (
   <>
     <h1>Nashville Kennels</h1>
     <h2>Loving care when you're not there.</h2>
     <NavBar />
     <ApplicationViews />
-    {/*  It is crucial that you wrap components that need data with the provider component that exposes that data in JSX.
-    You can wrap a component in as many providers as needed.
-    */}
-
-    {/*
-      <h2>Animals</h2>
-      <article className="animals">
+    <h2>Animals</h2>
+    <article className="animals">
       <AnimalProvider>
         <AnimalList />
       </AnimalProvider>
@@ -49,6 +75,7 @@ export const Kennel = () => (
       <CustomerProvider>
         <CustomerList />
       </CustomerProvider>
-    </article> */}
+    </article>
   </>
 );
+ */

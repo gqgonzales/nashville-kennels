@@ -23,6 +23,9 @@ export const CustomerList = () => {
             <div className="customer__name">
               Name: {customer.name}
             </div>
+            <div className="customer__email">
+              e-Mail: {customer.email}
+            </div>
             <div className="customer__address">
               Address: {customer.address}
             </div>
