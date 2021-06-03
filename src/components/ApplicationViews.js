@@ -6,6 +6,7 @@ import { AnimalList } from "./animal/AnimalList";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { CustomerList } from "./customer/CustomerList";
 import { CustomerProvider } from "./customer/CustomerProvider";
+import { EmployeeDetail } from "./employee/EmployeeDetail";
 import { EmployeeForm } from "./employee/EmployeeForm";
 import { EmployeeList } from "./employee/EmployeeList";
 import { EmployeeProvider } from "./employee/EmployeeProvider";
@@ -49,6 +50,13 @@ export const ApplicationViews = () => {
               </Route>
 
               {/* EMPLOYEES */}
+
+              <Route
+                exact
+                path="/employees/detail/:employeeId(\d+)"
+              >
+                <EmployeeDetail />
+              </Route>
 
               <Route path="/employees">
                 <EmployeeList />

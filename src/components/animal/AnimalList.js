@@ -19,6 +19,9 @@ export const AnimalList = ({ taco }) => {
       <button onClick={() => history.push("/animals/create")}>
         Register new animal!
       </button>
+      <button onClick={() => history.push("/animals")}>
+        Cancel!
+      </button>
 
       <div className="animals">
         {animals.map((animal) => (
@@ -27,7 +30,7 @@ export const AnimalList = ({ taco }) => {
             key={animal.id}
             className="animal"
           >
-            {animal.name}
+            {animal.name} the {animal.breed}
           </Link>
         ))}
       </div>
