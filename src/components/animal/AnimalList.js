@@ -3,7 +3,7 @@ import { AnimalContext } from "./AnimalProvider";
 import "./Animal.css";
 import { useHistory, Link } from "react-router-dom";
 
-export const AnimalList = ({ taco }) => {
+export const AnimalList = () => {
   const { animals, getAnimals } = useContext(AnimalContext);
   const history = useHistory();
 

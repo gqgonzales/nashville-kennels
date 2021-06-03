@@ -18,7 +18,7 @@ export const LocationForm = () => {
 
   useEffect(() => {
     getEmployees();
-  });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleControlledInputChange = (event) => {
     const newLocation = { ...location };
@@ -26,7 +26,7 @@ export const LocationForm = () => {
     setLocation(newLocation);
   };
 
-  const handleCLickSaveLocation = (event) => {
+  const handleClickSaveLocation = (event) => {
     event.preventDefault();
 
     if (
@@ -80,7 +80,7 @@ export const LocationForm = () => {
       </fieldset>
       <button
         className="btn btn-primary"
-        onClick={handleCLickSaveLocation}
+        onClick={handleClickSaveLocation}
       >
         Build Location
       </button>

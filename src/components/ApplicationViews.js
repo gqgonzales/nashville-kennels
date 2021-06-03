@@ -10,6 +10,7 @@ import { EmployeeDetail } from "./employee/EmployeeDetail";
 import { EmployeeForm } from "./employee/EmployeeForm";
 import { EmployeeList } from "./employee/EmployeeList";
 import { EmployeeProvider } from "./employee/EmployeeProvider";
+import { LocationDetail } from "./location/LocationDetail";
 import { LocationForm } from "./location/LocationForm";
 import { LocationList } from "./location/LocationList";
 import { LocationProvider } from "./location/LocationProvider";
@@ -40,6 +41,13 @@ export const ApplicationViews = () => {
               </Route>
 
               {/* LOCATIONS */}
+
+              <Route
+                exact
+                path="/locations/detail/:locationId(\d+)"
+              >
+                <LocationDetail />
+              </Route>
 
               <Route path="/locations">
                 <LocationList />
