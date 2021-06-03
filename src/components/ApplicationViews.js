@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { AnimalDetail } from "./animal/AnimalDetail";
 import { AnimalForm } from "./animal/AnimalForm";
 import { AnimalList } from "./animal/AnimalList";
 import { AnimalProvider } from "./animal/AnimalProvider";
@@ -15,8 +16,61 @@ import { LocationProvider } from "./location/LocationProvider";
 export const ApplicationViews = () => {
   return (
     <>
-      {/* Render the location list when http://localhost:3000/ */}
-      <LocationProvider>
+      <AnimalProvider>
+        <CustomerProvider>
+          <LocationProvider>
+            <EmployeeProvider>
+              {/* HOME */}
+              <Route exact path="/">
+                <LocationList />
+              </Route>
+
+              {/* ANIMALS */}
+              <Route exact path="/animals/detail/:animalId(\d+)">
+                <AnimalDetail />
+              </Route>
+
+              <Route path="/animals">
+                <AnimalList />
+              </Route>
+
+              <Route exact path="/animals/create">
+                <AnimalForm />
+              </Route>
+
+              {/* LOCATIONS */}
+
+              <Route path="/locations">
+                <LocationList />
+              </Route>
+
+              <Route exact path="/locations/create">
+                <LocationForm />
+              </Route>
+
+              {/* EMPLOYEES */}
+
+              <Route path="/employees">
+                <EmployeeList />
+              </Route>
+
+              <Route exact path="/employees/create">
+                <EmployeeForm />
+              </Route>
+
+              {/* CUSTOMERS */}
+
+              <Route path="/customers">
+                <CustomerList />
+              </Route>
+
+              {/* AND SCENE */}
+            </EmployeeProvider>
+          </LocationProvider>
+        </CustomerProvider>
+      </AnimalProvider>
+
+      {/* <LocationProvider>
         <EmployeeProvider>
           <Route exact path="/">
             <LocationList />
@@ -24,12 +78,15 @@ export const ApplicationViews = () => {
         </EmployeeProvider>
       </LocationProvider>
 
-      {/* Render the animal list when http://localhost:3000/animals */}
       <AnimalProvider>
         <CustomerProvider>
           <LocationProvider>
             <Route path="/animals">
               <AnimalList />
+            </Route>
+
+            <Route exact path="/animals/detail/:animalId(\d+)">
+              <AnimalDetail />
             </Route>
 
             <Route exact path="/animals/create">
@@ -46,7 +103,6 @@ export const ApplicationViews = () => {
               <EmployeeList />
             </Route>
             <Route exact path="/employees/create">
-              {/* Need to import EmployeeForm at top */}
               <EmployeeForm />
             </Route>
           </AnimalProvider>
@@ -69,7 +125,7 @@ export const ApplicationViews = () => {
         <Route path="/customers">
           <CustomerList />
         </Route>
-      </CustomerProvider>
+      </CustomerProvider> */}
     </>
   );
 };
