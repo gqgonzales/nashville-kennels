@@ -1,7 +1,7 @@
-/* import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AnimalContext } from "./AnimalProvider";
 import "./Animal.css";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 
 export const AnimalList = ({ taco }) => {
   const { animals, getAnimals } = useContext(AnimalContext);
@@ -14,24 +14,28 @@ export const AnimalList = ({ taco }) => {
 
   return (
     <>
-      <h1>Animals</h1>
+      <h2>Animals</h2>
 
       <button onClick={() => history.push("/animals/create")}>
-        Make Reservation
+        Register new animal!
       </button>
 
       <div className="animals">
         {animals.map((animal) => (
-          <Link to={`/animals/detail/${animal.id}`}>
+          <Link
+            to={`/animals/detail/${animal.id}`}
+            key={animal.id}
+            className="animal"
+          >
             {animal.name}
           </Link>
         ))}
       </div>
     </>
   );
-}; */
+};
 
-import React, { useContext, useEffect } from "react";
+/* import React, { useContext, useEffect } from "react";
 // To start, you need to import the context object you created in the provider component so that the useContext() hook can access the objects it exposes.
 import { AnimalContext } from "./AnimalProvider";
 import { useHistory } from "react-router-dom";
@@ -78,3 +82,4 @@ export const AnimalList = () => {
     </>
   );
 };
+ */

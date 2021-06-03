@@ -19,6 +19,7 @@ export const CustomerList = () => {
           <div
             className="customer"
             id={`customer--${customer.id}`}
+            key={customer.id}
           >
             <div className="customer__name">
               Name: {customer.name}

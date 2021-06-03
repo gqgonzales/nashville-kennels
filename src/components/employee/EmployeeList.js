@@ -25,6 +25,7 @@ export const EmployeeList = () => {
             <div
               className="employee"
               id={`employee--${employee.id}`}
+              key={employee.id}
             >
               <div className="employee__name">
                 Name: {employee.name}

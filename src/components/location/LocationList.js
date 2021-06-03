@@ -30,6 +30,7 @@ export const LocationList = () => {
             <div
               className="location"
               id={`location--${location.id}`}
+              key={location.id}
             >
               <div className="location__name">
                 Name: {location.name}
