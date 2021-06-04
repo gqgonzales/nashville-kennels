@@ -69,7 +69,6 @@ export const AnimalForm = () => {
       .then(getLocations)
       .then(() => {
         if (animalId) {
-          debugger;
           getAnimalById(animalId).then((animal) => {
             setAnimal(animal);
             setIsLoading(false);

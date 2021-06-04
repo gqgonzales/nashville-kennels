@@ -9,7 +9,7 @@ export const LocationProvider = (props) => {
 
   const getLocations = () => {
     return fetch(
-      "http://localhost:8088/locations?_embed=employees&_embed=animals"
+      "http://localhost:8088/locations?_embed=employees&_embed=locations"
     )
       .then((res) => res.json())
       .then((data) => setLocations(data));
@@ -25,6 +25,32 @@ export const LocationProvider = (props) => {
     }).then(getLocations);
   };
 
+  const updateLocation = (location) => {
+    return fetch(
+      `http://localhost:8088/locations/${location.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(location),
+      }
+    ).then(getLocations);
+  };
+
+  // Where is getlocationById defined?
+  const getLocationById = (locationId) => {
+    return fetch(
+      `http://localhost:8088/locations/${locationId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => res.json());
+  };
+
   /*
         You return a context provider which has the
         `locations` state, `getLocations` function,
@@ -37,6 +63,8 @@ export const LocationProvider = (props) => {
         locations,
         getLocations,
         addLocation,
+        updateLocation,
+        getLocationById,
       }}
     >
       {props.children}

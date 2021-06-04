@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LocationContext } from "./LocationProvider";
 import "./Location.css";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const LocationDetail = () => {
   const { locations } = useContext(LocationContext);
@@ -9,6 +9,8 @@ export const LocationDetail = () => {
     employees: [],
     animals: [],
   });
+
+  const history = useHistory();
 
   /*
         Given the example URL above, this will store the value
@@ -43,6 +45,13 @@ export const LocationDetail = () => {
           })
           .join(", ")}
       </div>
+      <button
+        onClick={() => {
+          history.push(`/locations/edit/${location.id}`);
+        }}
+      >
+        Edit Location Details
+      </button>
     </section>
   );
 };

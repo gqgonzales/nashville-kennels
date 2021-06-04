@@ -1,32 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { LocationContext } from "../location/LocationProvider";
 import { EmployeeContext } from "../employee/EmployeeProvider";
 import "./Location.css";
 
 export const LocationForm = () => {
-  const { addLocation } = useContext(LocationContext);
+  const { addLocation, updateLocation, getLocationById } =
+    useContext(LocationContext);
   const { employees, getEmployees } =
     useContext(EmployeeContext);
 
-  const [location, setLocation] = useState({
-    name: "",
-    address: "",
-  });
-
+  const [location, setLocation] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const { locationId } = useParams();
   const history = useHistory();
-
-  useEffect(() => {
-    getEmployees();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleControlledInputChange = (event) => {
     const newLocation = { ...location };
-    newLocation[event.target.id] = event.target.value;
+    newLocation[event.target.name] = event.target.value;
     setLocation(newLocation);
   };
 
-  const handleClickSaveLocation = (event) => {
+  const handleSaveLocation = (event) => {
     event.preventDefault();
 
     if (
@@ -35,15 +30,48 @@ export const LocationForm = () => {
     ) {
       window.alert("Please complete all forms to submit.");
     } else {
+      setIsLoading(true);
+      if (locationId) {
+        //PUT - update
+        updateLocation({
+          id: location.id,
+          name: location.name,
+          address: location.address,
+        }).then(() =>
+          history.push(`/locations/detail/${location.id}`)
+        );
+      } else {
+        //POST - add
+        addLocation({
+          // id: location.id,
+          name: location.name,
+          address: location.address,
+        }).then(() => history.push("/locations"));
+      }
+      /*       
+      Old code in the above ELSE statement:
       const newLocation = {
         name: location.name,
         address: location.address,
       };
       addLocation(newLocation).then(() =>
         history.push("/locations")
-      );
+      ); */
     }
   };
+
+  useEffect(() => {
+    getEmployees().then(() => {
+      if (locationId) {
+        getLocationById(locationId).then((location) => {
+          setLocation(location);
+          setIsLoading(false);
+        });
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <form className="locationForm">
@@ -53,7 +81,8 @@ export const LocationForm = () => {
           <label htmlFor="name">Location name:</label>
           <input
             type="text"
-            id="name"
+            id="locationName"
+            name="name"
             required
             autoFocus
             className="form-control"
@@ -65,10 +94,11 @@ export const LocationForm = () => {
       </fieldset>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="name">Animal breed:</label>
+          <label htmlFor="name">Location Address:</label>
           <input
             type="text"
-            id="address"
+            id="locationAddress"
+            name="address"
             required
             autoFocus
             className="form-control"
@@ -80,9 +110,13 @@ export const LocationForm = () => {
       </fieldset>
       <button
         className="btn btn-primary"
-        onClick={handleClickSaveLocation}
+        disabled={isLoading}
+        onClick={(event) => {
+          event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
+          handleSaveLocation();
+        }}
       >
-        Build Location
+        {locationId ? <>Save Location</> : <>Add Location</>}
       </button>
     </form>
   );
