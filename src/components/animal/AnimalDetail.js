@@ -1,14 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AnimalContext } from "./AnimalProvider";
 import "./Animal.css";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const AnimalDetail = () => {
-  const { animals } = useContext(AnimalContext);
+  // HEAD WIZARDS: I called releaseAnimal here in my useContext object, is that correct? Check line 17.
+  const { animals, releaseAnimal } = useContext(AnimalContext);
   const [animal, setAnimal] = useState({
     location: {},
     customer: {},
   });
+
+  const history = useHistory();
+
+  const handleRelease = () => {
+    releaseAnimal(animal.id).then(() => {
+      history.push("/animals");
+    });
+  };
 
   /*
         Given the example URL above, this will store the value
@@ -22,7 +31,7 @@ export const AnimalDetail = () => {
     ) || { location: {}, customer: {} };
 
     setAnimal(thisAnimal);
-  }, [animalId]);
+  }, [animalId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="animal">
@@ -36,6 +45,14 @@ export const AnimalDetail = () => {
       <div className="animal__owner">
         Customer: {animal.customer.name}
       </div>
+      <button onClick={handleRelease}>Release Animal</button>
+      <button
+        onClick={() => {
+          history.push(`/animals/edit/${animal.id}`);
+        }}
+      >
+        Edit Animal Info
+      </button>
     </section>
   );
 };
