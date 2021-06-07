@@ -37,7 +37,7 @@ export const AnimalList = () => {
 
   return (
     <>
-      <h1>Animals</h1>
+      <h2>Animals</h2>
 
       <button onClick={() => history.push("/animals/create")}>
         Add a new animal!
