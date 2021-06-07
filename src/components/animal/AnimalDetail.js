@@ -3,8 +3,7 @@ import { AnimalContext } from "./AnimalProvider";
 import "./Animal.css";
 import { useHistory, useParams } from "react-router-dom";
 
-export const AnimalDetail = () => {
-  // HEAD WIZARDS: I called releaseAnimal here in my useContext object, is that correct? Check line 17.
+export const AnimalDetail = ({ animalObj }) => {
   const { animals, releaseAnimal } = useContext(AnimalContext);
   const [animal, setAnimal] = useState({
     location: {},
@@ -12,17 +11,6 @@ export const AnimalDetail = () => {
   });
 
   const history = useHistory();
-
-  const handleRelease = () => {
-    releaseAnimal(animal.id).then(() => {
-      history.push("/animals");
-    });
-  };
-
-  /*
-        Given the example URL above, this will store the value
-        of 5 in the animalId variable
-    */
   const { animalId } = useParams();
 
   useEffect(() => {
@@ -32,6 +20,12 @@ export const AnimalDetail = () => {
 
     setAnimal(thisAnimal);
   }, [animalId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleRelease = () => {
+    releaseAnimal(animal.id).then(() => {
+      history.push("/animals");
+    });
+  };
 
   return (
     <section className="animal">
