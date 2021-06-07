@@ -37,7 +37,9 @@ export const EmployeeDetail = () => {
       <div className="employee__location">
         Corraling pups at the {employee.location.name} location!
       </div>
-      <button onClick={handleRelease}>Release Employee</button>
+      <button className="delete__button" onClick={handleRelease}>
+        Release Employee
+      </button>
       <button
         onClick={() => {
           history.push(`/employees/edit/${employee.id}`);
