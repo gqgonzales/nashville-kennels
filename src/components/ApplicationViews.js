@@ -78,6 +78,10 @@ export const ApplicationViews = () => {
                 <EmployeeList />
               </Route>
 
+              <Route path="/employees/edit/:employeeId(\d+)">
+                <EmployeeForm />
+              </Route>
+
               <Route exact path="/employees/create">
                 <EmployeeForm />
               </Route>
@@ -93,63 +97,6 @@ export const ApplicationViews = () => {
           </LocationProvider>
         </CustomerProvider>
       </AnimalProvider>
-
-      {/* <LocationProvider>
-        <EmployeeProvider>
-          <Route exact path="/">
-            <LocationList />
-          </Route>
-        </EmployeeProvider>
-      </LocationProvider>
-
-      <AnimalProvider>
-        <CustomerProvider>
-          <LocationProvider>
-            <Route path="/animals">
-              <AnimalList />
-            </Route>
-
-            <Route exact path="/animals/detail/:animalId(\d+)">
-              <AnimalDetail />
-            </Route>
-
-            <Route exact path="/animals/create">
-              <AnimalForm />
-            </Route>
-          </LocationProvider>
-        </CustomerProvider>
-      </AnimalProvider>
-
-      <EmployeeProvider>
-        <LocationProvider>
-          <AnimalProvider>
-            <Route path="/employees">
-              <EmployeeList />
-            </Route>
-            <Route exact path="/employees/create">
-              <EmployeeForm />
-            </Route>
-          </AnimalProvider>
-        </LocationProvider>
-      </EmployeeProvider>
-
-      <LocationProvider>
-        <EmployeeProvider>
-          <Route path="/locations">
-            <LocationList />
-          </Route>
-
-          <Route exact path="/locations/create">
-            <LocationForm />
-          </Route>
-        </EmployeeProvider>
-      </LocationProvider>
-
-      <CustomerProvider>
-        <Route path="/customers">
-          <CustomerList />
-        </Route>
-      </CustomerProvider> */}
     </>
   );
 };

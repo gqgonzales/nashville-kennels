@@ -1,95 +1,113 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { LocationContext } from "../location/LocationProvider";
-import { EmployeeContext } from "./EmployeeProvider";
+import { EmployeeContext } from "../employee/EmployeeProvider";
 import "./Employee.css";
+import { useHistory, useParams } from "react-router-dom";
 
 export const EmployeeForm = () => {
-  const { addEmployee } = useContext(EmployeeContext);
+  const {
+    addEmployee,
+    getEmployeeById,
+    updateEmployee,
+    getEmployees,
+  } = useContext(EmployeeContext);
   const { locations, getLocations } =
     useContext(LocationContext);
-  /*
-  With React, we do not target the DOM with `document.querySelector()`. 
-  Instead, our return (render) reacts to state or props.
-  Define the intial state of the form inputs with useState()
-  */
 
-  const [employee, setEmployee] = useState({
-    name: "",
-    locationId: 0,
-  });
+  //for edit, hold on to state of employee in this view
+  const [employee, setEmployee] = useState({});
+  //wait for data before button is active
+  const [isLoading, setIsLoading] = useState(true);
 
+  const { employeeId } = useParams();
   const history = useHistory();
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
-  useEffect(() => {
-    getLocations();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  //when a field changes, update state. The return will re-render and display based on the values in state
+  //when field changes, update state. This causes a re-render and updates the view.
   //Controlled component
   const handleControlledInputChange = (event) => {
-    /* When changing a state object or array,
-    always create a copy, make changes, and then set state.*/
+    //When changing a state object or array,
+    //always create a copy make changes, and then set state.
     const newEmployee = { ...employee };
-    /* Employee is an object with properties.
-    Set the property to the new value
-    using object bracket notation. */
-    newEmployee[event.target.id] = event.target.value;
-    // update state
+    //employee is an object with properties.
+    //set the property to the new value
+    newEmployee[event.target.name] = event.target.value;
+    //update state
     setEmployee(newEmployee);
   };
 
-  const handleClickSaveEmployee = (event) => {
-    event.preventDefault(); //Prevents the browser from submitting the form
-
-    const locationId = parseInt(employee.locationId);
-    // const customerId = parseInt(animal.customerId);
-
-    if (locationId === 0) {
-      window.alert("Please select a hiring location");
-    } else {
-      //Invoke addAnimal passing the new animal object as an argument
-      //Once complete, change the url and display the animal list
-
-      const newEmployee = {
-        name: employee.name,
-        locationId: locationId,
-      };
-      addEmployee(newEmployee).then(() =>
-        history.push("/employees")
+  const handleSaveEmployee = () => {
+    if (parseInt(employee.locationId) === 0) {
+      window.alert(
+        "Please enter all required fields to continue."
       );
+    } else {
+      //disable the button - no extra clicks
+      setIsLoading(true);
+      if (employeeId) {
+        //PUT - update
+        updateEmployee({
+          id: employee.id,
+          name: employee.name,
+          locationId: parseInt(employee.locationId),
+        }).then(() =>
+          history.push(`/employees/detail/${employee.id}`)
+        );
+      } else {
+        //POST - add
+        addEmployee({
+          name: employee.name,
+          locationId: parseInt(employee.locationId),
+        }).then(() => history.push("/employees"));
+      }
     }
   };
 
+  // Get customers and locations. If employeeId is in the URL, getEmployeeById
+  useEffect(() => {
+    getEmployees()
+      .then(getLocations)
+      .then(() => {
+        if (employeeId) {
+          getEmployeeById(employeeId).then((employee) => {
+            setEmployee(employee);
+            setIsLoading(false);
+          });
+        } else {
+          setIsLoading(false);
+        }
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  //since state controlls this component, we no longer need
+  //useRef(null) or ref
+
   return (
     <form className="employeeForm">
-      <h2 className="employeeForm__title">Hire someone new</h2>
+      <h2 className="employeeForm__title">New employee</h2>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="name">Employee name:</label>
+          <label htmlFor="employeeName">Name: </label>
           <input
             type="text"
-            id="name"
+            id="employeeName"
+            name="name"
             required
             autoFocus
             className="form-control"
-            placeholder="Employee name"
-            value={employee.name}
+            placeholder="Employee Name"
             onChange={handleControlledInputChange}
+            defaultValue={employee.name}
           />
         </div>
       </fieldset>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="location">Assign to location: </label>
+          <label htmlFor="location">Location: </label>
           <select
-            name="locationId"
-            id="locationId"
-            className="form-control"
             value={employee.locationId}
+            name="locationId"
+            id="employeeLocation"
+            className="form-control"
             onChange={handleControlledInputChange}
           >
             <option value="0">Select a location</option>
@@ -103,9 +121,13 @@ export const EmployeeForm = () => {
       </fieldset>
       <button
         className="btn btn-primary"
-        onClick={handleClickSaveEmployee}
+        disabled={isLoading}
+        onClick={(event) => {
+          event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
+          handleSaveEmployee();
+        }}
       >
-        Save Employee
+        {employeeId ? <>Save employee</> : <>Add employee</>}
       </button>
     </form>
   );

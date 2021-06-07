@@ -25,12 +25,50 @@ export const EmployeeProvider = (props) => {
     ).then(getEmployees);
   };
 
+  const releaseEmployee = (employeeId) => {
+    return fetch(
+      `http://localhost:8088/employees/${employeeId}`,
+      {
+        method: "DELETE",
+      }
+    ).then(getEmployees);
+  };
+
+  const updateEmployee = (employee) => {
+    return fetch(
+      `http://localhost:8088/employees/${employee.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(employee),
+      }
+    ).then(getEmployees);
+  };
+
+  // Where is getAnimalById defined?
+  const getEmployeeById = (employeeId) => {
+    return fetch(
+      `http://localhost:8088/employees/${employeeId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => res.json());
+  };
+
   return (
     <EmployeeContext.Provider
       value={{
         employees,
         getEmployees,
         addEmployee,
+        releaseEmployee,
+        updateEmployee,
+        getEmployeeById,
       }}
     >
       {props.children}
