@@ -21,14 +21,20 @@ export const CustomerList = () => {
             id={`customer--${customer.id}`}
             key={customer.id}
           >
-            <div className="customer__name">
-              Name: {customer.name}
-            </div>
+            <h3 className="customer__name">{customer.name}</h3>
             <div className="customer__email">
               e-Mail: {customer.email}
             </div>
             <div className="customer__address">
               Address: {customer.address}
+            </div>
+            <div className="customer__animals">
+              Pets:{" "}
+              {customer.animals
+                .map((a) => {
+                  return a.name;
+                })
+                .join(", ")}
             </div>
           </div>
         );

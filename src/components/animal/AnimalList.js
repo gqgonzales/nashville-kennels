@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { AnimalContext } from "./AnimalProvider";
 import { AnimalDetail } from "./AnimalDetail";
 import "./Animal.css";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const AnimalList = () => {
   const { animals, getAnimals, searchTerms } =
@@ -15,7 +15,7 @@ export const AnimalList = () => {
 
   useEffect(() => {
     getAnimals();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // useEffect dependency array with dependencies - will run if dependency changes (state)
   // searchTerms will cause a change

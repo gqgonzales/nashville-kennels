@@ -29,8 +29,9 @@ export const LocationDetail = () => {
   return (
     <section className="location">
       <h3 className="location__name">{location.name}</h3>
+      <div className="location__address">{location.address}</div>
       <div className="location__employees">
-        Staffed by:
+        Staffed by:{" "}
         {location.employees
           .map((e) => {
             return e.name;
@@ -38,12 +39,12 @@ export const LocationDetail = () => {
           .join(", ")}
       </div>
       <div className="location__animals">
-        Who wrangle:
+        Pets:{" "}
         {location.animals
           .map((a) => {
             return a.name;
           })
-          .join(", ")}
+          .join(", ")}{" "}
       </div>
       <button
         onClick={() => {

@@ -11,7 +11,7 @@ export const EmployeeList = ({ taco }) => {
   // Initialization effect hook -> Go get employee data
   useEffect(() => {
     getEmployees();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

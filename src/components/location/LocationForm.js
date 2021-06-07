@@ -22,7 +22,7 @@ export const LocationForm = () => {
   };
 
   const handleSaveLocation = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     if (
       location.name.length === 0 ||
