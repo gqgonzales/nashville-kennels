@@ -22,8 +22,11 @@ export const AnimalList = () => {
   useEffect(() => {
     if (searchTerms !== "") {
       // If the search field is not blank, display matching animals
-      const subset = animals.filter((animal) =>
-        animal.name.toLowerCase().includes(searchTerms)
+      const subset = animals.filter(
+        (animal) =>
+          animal.name.includes(searchTerms) ||
+          animal.name.toLowerCase().includes(searchTerms) ||
+          animal.name.toUpperCase().includes(searchTerms)
       );
       setFiltered(subset);
     } else {
