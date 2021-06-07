@@ -47,6 +47,9 @@ export const EmployeeDetail = () => {
       >
         Edit Employee Info
       </button>
+      <button onClick={() => history.push("/employees")}>
+        Cancel!
+      </button>
     </section>
   );
 };

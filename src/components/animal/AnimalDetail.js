@@ -48,6 +48,9 @@ export const AnimalDetail = () => {
       >
         Edit Animal Info
       </button>
+      <button onClick={() => history.push("/animals")}>
+        Back to List
+      </button>
     </section>
   );
 };

@@ -53,6 +53,9 @@ export const LocationDetail = () => {
       >
         Edit Location Details
       </button>
+      <button onClick={() => history.push("/locations")}>
+        Cancel
+      </button>
     </section>
   );
 };

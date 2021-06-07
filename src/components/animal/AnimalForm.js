@@ -168,6 +168,9 @@ export const AnimalForm = () => {
       >
         {animalId ? <>Save Animal</> : <>Add Animal</>}
       </button>
+      <button onClick={() => history.push("/animals")}>
+        Cancel
+      </button>
     </form>
   );
 };

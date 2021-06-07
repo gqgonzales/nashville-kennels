@@ -22,9 +22,6 @@ export const LocationList = () => {
       <button onClick={() => history.push("/locations/create")}>
         Open New Location
       </button>
-      <button onClick={() => history.push("/locations")}>
-        Cancel!
-      </button>
       <div className="locations">
         {locations.map((location) => (
           <Link

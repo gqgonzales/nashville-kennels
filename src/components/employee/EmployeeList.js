@@ -20,9 +20,6 @@ export const EmployeeList = ({ taco }) => {
       <button onClick={() => history.push("/employees/create")}>
         Hire a new employee!
       </button>
-      <button onClick={() => history.push("/employees")}>
-        Cancel!
-      </button>
 
       <div className="employees">
         {employees.map((employee) => (

@@ -118,6 +118,9 @@ export const LocationForm = () => {
       >
         {locationId ? <>Save Location</> : <>Add Location</>}
       </button>
+      <button onClick={() => history.push("/locations")}>
+        Cancel
+      </button>
     </form>
   );
 };
