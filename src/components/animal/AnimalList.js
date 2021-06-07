@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AnimalContext } from "./AnimalProvider";
-import { AnimalDetail } from "./AnimalDetail";
+import { Animal } from "./Animal";
 import "./Animal.css";
 import { useHistory } from "react-router-dom";
 
@@ -44,9 +44,7 @@ export const AnimalList = () => {
       </button>
       <div className="animals">
         {filteredAnimals.map((animal) => {
-          return (
-            <AnimalDetail key={animal.id} animal={animal} />
-          );
+          return <Animal key={animal.id} animalObj={animal} />;
         })}
       </div>
     </>

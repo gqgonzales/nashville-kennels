@@ -14,7 +14,12 @@ export const AnimalForm = () => {
     useContext(CustomerContext);
 
   //for edit, hold on to state of animal in this view
-  const [animal, setAnimal] = useState({});
+  const [animal, setAnimal] = useState({
+    name: "",
+    breed: "",
+    customerId: 0,
+    locationId: 0,
+  });
   //wait for data before button is active
   const [isLoading, setIsLoading] = useState(true);
 
@@ -93,11 +98,10 @@ export const AnimalForm = () => {
             id="animalName"
             name="name"
             required
-            autoFocus
             className="form-control"
             placeholder="Animal name"
             onChange={handleControlledInputChange}
-            defaultValue={animal.name}
+            value={animal.name}
           />
         </div>
       </fieldset>
@@ -109,7 +113,6 @@ export const AnimalForm = () => {
             name="breed"
             id="animalBreed"
             required
-            autoFocus
             className="form-control"
             placeholder="Animal breed"
             value={animal.breed}
