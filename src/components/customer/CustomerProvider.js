@@ -9,20 +9,23 @@ export const CustomerProvider = (props) => {
 
   const getCustomers = () => {
     return fetch(
-      "http://localhost:8088/customers?_embed=animals"
+      "https://gqg-kennel-api.herokuapp.com/customers?_embed=animals"
     )
       .then((res) => res.json())
       .then((data) => setCustomers(data));
   };
 
   const addCustomer = (cusotmerObject) => {
-    return fetch("http://localhost:8088/customers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cusotmerObject),
-    }).then(getCustomers);
+    return fetch(
+      "https://gqg-kennel-api.herokuapp.com/customers",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cusotmerObject),
+      }
+    ).then(getCustomers);
   };
 
   /*

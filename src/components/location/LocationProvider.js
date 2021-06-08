@@ -9,25 +9,28 @@ export const LocationProvider = (props) => {
 
   const getLocations = () => {
     return fetch(
-      "http://localhost:8088/locations?_embed=employees&_embed=animals"
+      "https://gqg-kennel-api.herokuapp.com/locations?_embed=employees&_embed=animals"
     )
       .then((res) => res.json())
       .then((data) => setLocations(data));
   };
 
   const addLocation = (locationObject) => {
-    return fetch("http://localhost:8088/locations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(locationObject),
-    }).then(getLocations);
+    return fetch(
+      "https://gqg-kennel-api.herokuapp.com/locations",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(locationObject),
+      }
+    ).then(getLocations);
   };
 
   const updateLocation = (location) => {
     return fetch(
-      `http://localhost:8088/locations/${location.id}`,
+      `https://gqg-kennel-api.herokuapp.com/locations/${location.id}`,
       {
         method: "PUT",
         headers: {
@@ -41,7 +44,7 @@ export const LocationProvider = (props) => {
   // Where is getlocationById defined?
   const getLocationById = (locationId) => {
     return fetch(
-      `http://localhost:8088/locations/${locationId}`,
+      `https://gqg-kennel-api.herokuapp.com/locations/${locationId}`,
       {
         method: "GET",
         headers: {

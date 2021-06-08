@@ -7,8 +7,7 @@ import "./Location.css";
 export const LocationForm = () => {
   const { addLocation, updateLocation, getLocationById } =
     useContext(LocationContext);
-  const { employees, getEmployees } =
-    useContext(EmployeeContext);
+  const { getEmployees } = useContext(EmployeeContext);
 
   const [location, setLocation] = useState({});
   const [isLoading, setIsLoading] = useState(true);
